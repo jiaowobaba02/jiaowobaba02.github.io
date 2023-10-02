@@ -1,7 +1,7 @@
 body {
   	background-color: #f2f2f2;
 	font-family: Arial, sans-serif;
-	font-size: 16px;
+	font-size: 0.8em;
 	line-height: 1;
 	margin: 0;
 	padding: 0;
@@ -15,7 +15,7 @@ header {
   transition: background-color 0.5s ease-in-out;
   color: white;
   border-radius: 1.5em;
-  border: 2px solid #333;
+  border:  solid #333;
   
 }
 header:hover {
@@ -34,11 +34,11 @@ nav {
   background-color: black;
   overflow: hidden;
   color: white;
-  padding: 10px;
+  padding: 0.1em;
   text-align: center;
   transition: background-color 0.5s ease-in-out;
   border-radius: 1.5em;
-  border: 2px solid #333;
+  border:  solid #333;
 }
 
 nav a {
@@ -68,7 +68,7 @@ article {
   margin: auto;
   border-radius: 1.5em;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 0.1em solid #ccc;
 }
 
 article header {
@@ -97,6 +97,6 @@ article section {
 
 footer {
   background-color: white;
-  padding: 5px 0;
+  padding: 0.1em 0;
   text-align: center;
 }
