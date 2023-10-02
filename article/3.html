@@ -27,12 +27,13 @@
         <p>第一，安装msys2</p>
         <a href="https://msys2.org">下载msys2</a>
         <p>很多教程说要换源，但是我发现其实不用换源，因为msys2最新版在安装时已经配置好了源</p>
-        <p>运行 <code>pacman -S mingw-w64-x86_64-gtk3 mingw-w64-x86_64-glade mingw-w64-x86_64-gcc gcc vim pkg-config g++</code> 在msys2上</p>
+        <p>运行 <pre id="code_block"><code>pacman -S mingw-w64-x86_64-gtk3 mingw-w64-x86_64-glade mingw-w64-x86_64-gcc gcc vim pkg-config g++</code></pre> 在msys2上</p>
         <h2>！！重要：</h2>
         <p>切换运行环境至<code><b><i><sub>MSYS2</sub> <sup>MINGW64</sup></i></b></code></p>
-        <p>执行 <code>pkg-config --libs --cflags gtk+-3.0</code> 以确定成功安装 </p>
-        <p>执行 <code>gcc 名称.cpp -o 名称.exe `pkg-config --libs --cflags gtk+-3.0`</code>用于编译文件</p>
+        <p>执行 <pre id="code_block"><code>pkg-config --libs --cflags gtk+-3.0</code></pre> 以确定成功安装 </p>
+        <p>执行 <pre id="code_block"><code>gcc 名称.cpp -o 名称.exe `pkg-config --libs --cflags gtk+-3.0`</code></pre>用于编译文件</p>
         <p>这篇文章到这里就结束了，欢迎评论</p>
+        
         <script src="https://giscus.app/client.js"
         data-repo="jiaowobaba02/jiaowobaba02.github.io"
         data-repo-id="R_kgDOKG2oFA"
