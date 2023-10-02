@@ -5,6 +5,7 @@ body {
 	line-height: 1;
 	margin: 0;
 	padding: 0;
+    border-radius: 1.5em;
 }
 
 header {
@@ -13,7 +14,7 @@ header {
   text-align: center;
   transition: background-color 0.5s ease-in-out;
   color: white;
-  border-radius: 25px;
+  border-radius: 1.5em;
   border: 2px solid #333;
   
 }
@@ -36,7 +37,7 @@ nav {
   padding: 10px;
   text-align: center;
   transition: background-color 0.5s ease-in-out;
-  border-radius: 25px;
+  border-radius: 1.5em;
   border: 2px solid #333;
 }
 
@@ -46,6 +47,7 @@ nav a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  border-radius: 1.5em;
   
 }
 
@@ -58,11 +60,13 @@ main {
   
   flex-wrap: wrap;
   padding: 2rem;
+
 }
 
 article {
   max-width: 100%;
   margin: auto;
+  border-radius: 1.5em;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
 }
