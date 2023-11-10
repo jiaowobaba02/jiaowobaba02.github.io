@@ -23,46 +23,93 @@
 }
 body {
     
-  	background-color: #f2f2f2;
+  	background-color: #E5F2F3;
 	font-family: Arial, sans-serif;
 	font-size: 0.8em;
 	line-height: 1;
 	margin: 0;
 	padding: 0;
-    border-radius: 1.5em;
+    border-radius: 0.5em;
+}
+
+#h {
+  background-color: #D9E9EA;
+  padding: 1em;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  color: black;
+  border-radius: 0.5em;
+  border:  solid #333;
+  box-shadow: 5px 5px 10px #888888;
+  
+}
+#h:hover {
+	background-color: #C2D6D7;
+	color: black;
+	box-shadow: 10px 10px 15px #888888;
 }
 
 header {
-  background-color: #333;
+  background-color: #D9E9EA;
   padding: 1em;
   text-align: center;
-  transition: background-color 0.5s ease-in-out;
-  color: white;
-  border-radius: 1.5em;
+  transition: 0.5s ease-in-out;
+  color: black;
+  border-radius: 0.5em;
   border:  solid #333;
+  
   
 }
 header:hover {
-	background-color: #f2f2f2;
+	background-color: #C2D6D7;
 	color: black;
+	
 }
 h1, h2 {
   font-size: 1.9em;
   margin: 0;
 }
 
-nav {
+#n {
   display: flex;
   justify-content: space-between;
   margin-top: 2em;
-  background-color: black;
+  background-color: #3A5557;
   overflow: hidden;
   color: white;
   padding: 0.1em;
   text-align: center;
   transition: background-color 0.5s ease-in-out;
-  border-radius: 1.5em;
-  border:  solid #333;
+  border-radius: 1em;
+  border:  solid #3A5557;
+}
+
+#n a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1em 1em;
+  text-decoration: none;
+  border-radius: 0.5em;
+  transition: 0.5s ease-in-out;
+}
+
+#n a:hover {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+nav {
+  
+  justify-content: space-between;
+  margin-top: 0.2em;
+  background-color: #8AA8AA;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  transition: background-color 0.5s ease-in-out;
+  border-radius: 0.5em;
+  border:  solid #8AA8AA;
 }
 
 nav a {
@@ -71,8 +118,8 @@ nav a {
   text-align: center;
   padding: 1em 1em;
   text-decoration: none;
-  border-radius: 1.5em;
-  transition: background-color 0.5s ease-in-out;
+  border-radius: 0.5em;
+  transition: 0.5s ease-in-out;
 }
 
 nav a:hover {
@@ -90,9 +137,17 @@ main {
 article {
   max-width: 75%;
   margin: auto;
-  border-radius: 1.5em;
+  border-radius: 0.5em;
   margin-bottom: 1rem;
   border: 0.1em solid #ccc;
+  transition: 0.5s ease-in-out;
+  box-shadow: 5px 5px 10px #888888;
+}
+
+article:hover{
+	background-color: #C2D6D7;
+	color: black;
+	box-shadow: 10px 10px 15px #888888;
 }
 
 article header {
@@ -109,7 +164,7 @@ article header h2 {
 
 article header p {
   font-style: italic;
-  color: #f2f2f2;
+  color: #333;
 }
 
 article section {
@@ -120,7 +175,7 @@ article section {
 }
 
 footer {
-  background-color: white;
+  background-color: #f2f2f2;
   padding: 0.1em 0;
   text-align: center;
 }
