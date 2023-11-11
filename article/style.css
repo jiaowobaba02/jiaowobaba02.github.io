@@ -40,13 +40,13 @@ body {
   color: black;
   border-radius: 0.5em;
   border:  solid #333;
-  box-shadow: 5px 5px 10px #888888;
+  box-shadow: 0.3em 0.3em 0.6em #888888;
   
 }
 #h:hover {
 	background-color: #C2D6D7;
 	color: black;
-	box-shadow: 10px 10px 15px #888888;
+	box-shadow: 0.3em 0.7em 1em #888888;
 }
 
 header {
@@ -140,6 +140,13 @@ article {
   border-radius: 0.5em;
   margin-bottom: 1rem;
   border: 0.1em solid #ccc;
+  transition: 0.5s ease-in-out;
+  box-shadow: 0.3em 0.3em 0.6em #888888;
+}
+
+article:hover{
+	color: black;
+	box-shadow: 0.3em 0.7em 1em #888888;
 }
 
 article header {
