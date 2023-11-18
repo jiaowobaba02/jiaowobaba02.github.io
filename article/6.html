@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>我的铃声实现原理-jiaowobaba02的网站-文章</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header id="h">
+      <h1>我的网站</h1>
+      
+      <del>notepad++作者脑瘫</del>
+      <nav id="n">
+      	<a href="#"> </a>
+        <a href="../index.html">首页</a>
+        <a href="https://github.com/jiaowobaba02/jiaowobaba02.github.io">项目地址</a>
+        <a href="../about.html">关于我</a>
+        <a href="#"> </a>
+      </nav>
+    </header>
+    
+    <main>
+      <article>
+        
+        <head><link rel="stylesheet" type="text/css" href="https://unpkg.com/vditor@3.8.15/dist/index.css"/>
+<script src="https://unpkg.com/vditor@3.8.15/dist/js/i18n/zh_CN.js"></script>
+<script src="https://unpkg.com/vditor@3.8.15/dist/method.min.js"></script></head>
+<body><div class="vditor-reset" id="preview"><center><h1>关于我的铃声系统如何实现的</h1></center>
+<p>我的铃声项目已经开源到<a href="https://github.com/jiaowobaba02/Class-ring">这里</a></p>
+<p><del>一半是用AI写的</del></p>
+<p>main.cpp（最初项目里命名为time_get.cpp）编译后运行时会打开class_form.csv看是否存在，若存在将会加载时间，加载时间方法：</p>
+<pre><code class="language-c++">int time=1145;
+int time_hour=time/100;//这里会读取时间的小时位
+int time_min=time%100//取模求分钟位
+/*
+接下来在这里判断时间即可
+*/
+</code></pre>
+<p>用上面的东西我们还在班里整了个自动眼操播放程序，<del>语文老师：强制下课是吧</del><br />
+如果判断是这个时间，那么main.cpp会先打开事先编译好的audio_control.cpp（这里要编译为1_control.exe），而audio_control会打开ring_path.txt，若main.cpp运行的命令为<code>.\1.control.exe 1</code> （有点忘了咋编的了）则会读取第一行，打上课铃 响铃命令例:<code>powershell -c (New-Object Media.SoundPlayer 'ring.wav').PlaySync()</code> 如果识别为none，则会响铃3次<br />
+代码：</p>
+<pre><code class="language-c++">if(path==&quot;none&quot;){
+        Beep(500,500);
+        Sleep(200);
+        Beep(500,500);
+        Sleep(200);
+        Beep(500,500);}
+</code></pre>
+<p>Beep这里是响铃的意思，好像是<code>Beep(频率（Hz）,时长（ms）)</code> 来着<br />
+在执行完该程序后，会执行class_form.cpp（但这里用的是多线程执行），但是class_form.cpp会再次读表 <del>（有点负优化了）</del>  好像运行命令是<code>.\class_form.exe 1 2</code> 这里“1”是指上课“2”指第几节课，第几周程序会自己判断，之后会调用msg_control.cpp来显示弹窗，由于msg_control.cpp代码很少，这里直接粘贴到这里：</p>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+
+int main(int argc, char *argv[])
+{
+    // 检查参数个数
+    if (argc != 4)
+    {
+        printf(&quot;Usage: ./msg_control.exe info title type\n&quot;);
+        return 1;
+    }
+
+    // 获取参数
+    char *info = argv[1]; // 消息框内容
+    char *title = argv[2]; // 消息框标题
+    char *type = argv[3]; // 消息框类型
+
+    // 根据type的值选择消息框类型
+    UINT msg_type;
+    if (strcmp(type, &quot;w&quot;) == 0 || strcmp(type, &quot;W&quot;) == 0)
+    {
+        msg_type = MB_ICONWARNING;
+    }
+    else if (strcmp(type, &quot;e&quot;) == 0 || strcmp(type, &quot;E&quot;) == 0)
+    {
+        msg_type = MB_ICONERROR;
+    }
+    else if (strcmp(type, &quot;i&quot;) == 0 || strcmp(type, &quot;I&quot;) == 0)
+    {
+        msg_type = MB_ICONINFORMATION;
+    }
+    else
+    {
+        printf(&quot;Invalid type: %s\n&quot;, type);
+        return 2;
+    }
+
+    // 创建消息框
+    int result = MessageBox(NULL, info, title, msg_type);
+    if (result == 0)
+    {
+        printf(&quot;Failed to create message box.\n&quot;);
+        return 3;
+    }
+
+    return 0;
+}
+</code></pre>
+<p>由于铃声可能非常短，这里我在main.cpp里又加了一个记忆的系统，主体代码（示例）：</p>
+<pre><code class="language-c++">int cache[rows][2] = {0};
+    for (int x = 1; x &lt;= rows - 1; x++)
+    {//设定初始值
+        cache[x][1] = 0;
+        cache[x][2] = 0;
+    }
+for (int k = 0; k &lt;= 2; k++)
+    {//刷新时间
+        k--;
+        time_t now = time(NULL);
+        tm *t = localtime(&amp;now);
+        for (int l = 0; l &lt; rows - 1; l++)
+        {
+            if (t-&gt;tm_hour == begin_time_hour[l] &amp;&amp; t-&gt;tm_min == begin_time_min[l] &amp;&amp; cache[l][1] == 0)
+            {
+                
+                cache[l][1]++;
+                
+            }
+            else
+            {
+                if (t-&gt;tm_hour == end_time_hour[l] &amp;&amp; t-&gt;tm_min == end_time_min[l] &amp;&amp; cache[l][2] == 0)
+                {
+                    
+                    cache[l][2]++;
+                    
+                }
+            }
+        }
+        Sleep(50);
+    }
+</code></pre>
+<p>总的来说我这程序还算挺简单的，欢迎评论！</p>
+</div>
+<script>
+    const previewElement = document.getElementById('preview')
+    Vditor.setContentTheme('light', 'https://unpkg.com/vditor@3.8.15/dist/css/content-theme');
+    Vditor.codeRender(previewElement);
+    Vditor.highlightRender({"enable":true,"lineNumber":false,"style":"github"}, previewElement, 'https://unpkg.com/vditor@3.8.15');
+    Vditor.mathRender(previewElement, {
+        cdn: 'https://unpkg.com/vditor@3.8.15',
+        math: {"engine":"KaTeX","inlineDigit":false,"macros":{}},
+    });
+    Vditor.mermaidRender(previewElement, 'https://unpkg.com/vditor@3.8.15', 'classic');
+    Vditor.flowchartRender(previewElement, 'https://unpkg.com/vditor@3.8.15');
+    Vditor.graphvizRender(previewElement, 'https://unpkg.com/vditor@3.8.15');
+    Vditor.chartRender(previewElement, 'https://unpkg.com/vditor@3.8.15', 'classic');
+    Vditor.mindmapRender(previewElement, 'https://unpkg.com/vditor@3.8.15', 'classic');
+    Vditor.abcRender(previewElement, 'https://unpkg.com/vditor@3.8.15');
+    Vditor.mediaRender(previewElement);
+    Vditor.speechRender(previewElement);
+</script>
+<script src="https://unpkg.com/vditor@3.8.15/dist/js/icons/ant.js"></script></body>
+
+       <p>注：第一次用markdown写</p>
+        
+        <script src="https://giscus.app/client.js"
+        data-repo="jiaowobaba02/jiaowobaba02.github.io"
+        data-repo-id="R_kgDOKG2oFA"
+        data-category="General"
+        data-category-id="DIC_kwDOKG2oFM4CZNOB"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+          
+      </article>
+      
+    </main>
+    <footer>
+      <p>版权所有 &copy; 114514 jiaowobaba02</p>
+    </footer>
+  </body>
+</html>
