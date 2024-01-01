@@ -60,7 +60,7 @@ body {
   transition: background-color 0.5s ease-in-out;
   border-radius: 0.5em;
   border:  solid #8AA8AA;
-  max-width: 50%;
+  max-width: 30%;
   margin: 0 auto;
 }
 
@@ -72,14 +72,14 @@ body {
   text-decoration: none;
   border-radius: 0.5em;
   transition: 0.5s ease-in-out;
-  max-width: 20%;
+  max-width: 70%;
   margin: 0 auto;
 }
 
 #button a:hover {
   background-color: #f2f2f2;
   color: #333;
-  max-width: 40%;
+  max-width: 90%;
   margin: 0 auto;
 }
 
