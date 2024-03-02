@@ -21,6 +21,28 @@
   color: #ececec;
   background: #114514;
 }
+.friends{
+	flex-direction: column;
+}
+.friend{
+	display:flex;
+	 max-width: 50%;
+        margin: auto;
+	border-radius: 0.5em;
+	margin-bottom: 1rem;
+	border: 0.1em solid #ccc;
+	transition: 0.5s ease-in-out;
+        box-shadow: 0.125em 0.125em 0.6em #888888;
+}
+.friend:hover{
+	display:flex;
+	 max-width: 65%;
+        margin: auto;
+	border-radius: 0.2em;
+	margin-bottom: 1rem;
+	border: 0.1em solid #ccc;
+        box-shadow: 0.25em 0.25em 0.8em #888888;
+}
 body {
     
   	background-color: #FFFFFF;
@@ -29,7 +51,7 @@ body {
 	line-height: 1;
 	margin: 0;
 	padding: 0;
-    border-radius: 0.5em;
+        border-radius: 0.5em;
 }
 
 #h {
